@@ -2,15 +2,12 @@
 {
     public static class MyExtentionMethods
     {
-        public static decimal TotalPrices(this )
+        public static decimal TotalPrices(this IEnumerable<Product?> products)
         {
             decimal total = 0;
-            if (cartParam.products != null ) 
+            foreach (Product? prod in products)
             {
-                foreach(Product? prod in cartParam.products )
-                {
-                    total += prod?.Price ?? 0;
-                }
+                total += prod?.Price ?? 0;
             }
             return total;
         }
