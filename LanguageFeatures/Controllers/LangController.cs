@@ -11,6 +11,11 @@ namespace LanguageFeatures.Controllers
                $"Name: {products[0]?.Name}, Price: { products[0]?.Price }"
                });*/
 
+           /* bool FilterByPrice(Product? p)
+            {
+                return (p?.Price ?? 0) >= 20;
+            }*/
+
            ShoppingCart cart = new ShoppingCart 
            {
                products = Product.GetProducts()
@@ -24,11 +29,16 @@ namespace LanguageFeatures.Controllers
                 new Product {Name = "Country Flag", Price = 34.95M}
             };
 
+           /* Func<Product?, bool> nameFilter = delegate (Product? prod)
+            {
+                return prod?.Name[0] == 'B';
+            };*/
+           
+            // Using Lambda expression
+            decimal priceFilterTotal = productArray.Filter(p => (p?.Price ?? 0) >= 20).TotalPrices();
+            decimal nameFilterTotal = productArray.Filter(p => p?.Name?[0] == 'B').TotalPrices();
 
-            decimal arrayTotal = productArray.FilterByPrice(20).TotalPrices();
-            decimal nameFilterTotal = productArray.FilterByName('B').TotalPrices();
-
-            return View("Index", new string[] { $"Array Total: {arrayTotal:C2}", $"Name Total: {nameFilterTotal:C2}" });
+            return View("Index", new string[] { $"Price Total: {priceFilterTotal:C2}", $"Name Total: {nameFilterTotal:C2}" });
 
         }
     }
