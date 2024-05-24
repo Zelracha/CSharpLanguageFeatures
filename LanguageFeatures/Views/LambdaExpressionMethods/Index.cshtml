@@ -1,0 +1,19 @@
+﻿@model IEnumerable<string>
+
+@{
+    Layout = null;
+}
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Using Lambda Expression and Methods</title>
+</head>
+
+<body>
+    <ul>
+        @foreach (string s in Model)
+        {
+            <li>@s</li>
+        }
+    </ul>
+</body>
